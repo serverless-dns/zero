@@ -16,12 +16,8 @@ export default {
 };
 
 async function handleRequest(request) {
-  if (debug) {
-    console.log("Url : "+request.url)
-    console.log("User-agent : "+request.headers.get('user-agent'))
-    console.log("Request : "+ request.headers)
-    logr(request)
-  }
+  if (debug) logr(request)
+
   return requiresJson(request) ? dohJson(request) : doh(request)
 }
 
@@ -31,11 +27,10 @@ function requiresJson(r) {
 }
 
 async function dohJson(request) {
-  let u = new URL(request.url)
-
   return forwardDnsJsonMessage(request)
 
   // TODO: It is not possible to remove cf headers
+  // let u = new URL(request.url)
   // res = new Response(res.body, res)
   // res.headers.set('Access-Control-Allow-Origin', u.origin)
   // res.headers.append('Vary', 'Origin')
@@ -53,11 +48,10 @@ async function dohJson(request) {
 }
 
 async function doh(request) {
-  let u = new URL(request.url)
-
   return forwardDnsMessage(request)
 
   // TODO: cors headers
+  // let u = new URL(request.url)
   // res = new Response(res.body, res)
   // res.headers.set('Access-Control-Allow-Origin', u.origin)
   // res.headers.append('Vary', 'Origin')
