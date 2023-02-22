@@ -6,4 +6,4 @@ routes = [
 ]
 usage_model = "unbound"
 workers_dev = true
-compatibility_date = "2022-07-09"
+compatibility_date = "2022-11-30"
